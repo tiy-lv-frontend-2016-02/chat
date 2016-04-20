@@ -1,0 +1,19 @@
+html {box-sizing:border-box; height:100%;}
+*, *:before, *:after {box-sizing:inherit;}
+
+nav {
+  display:flex;
+  height:40px;
+  background:#333;
+}
+
+nav a {
+  padding:0px 20px;
+  color:#fff;
+  line-height:40px;
+  text-decoration:none;
+}
+
+nav a:hover {
+  background:#222;
+}

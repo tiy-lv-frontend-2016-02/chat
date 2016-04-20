@@ -1,0 +1,21 @@
+.from {
+  float:left;
+  display:block;
+  width:100px;
+  clear:left;
+  padding-left:10px;
+}
+.from:after{
+  content:":";
+}
+.message {
+  position:absolute;
+  left:115px;
+  right:0;
+  margin-bottom:10px;
+}
+#messages p {
+  overflow: auto;
+  margin-top:10px;
+  padding-top:10px;
+}
