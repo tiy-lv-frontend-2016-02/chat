@@ -5,9 +5,10 @@ require('assets/styles/message.scss');
 export default React.createClass({
   getDefaultProps: function () {
     return {
-      creatorColor: '#cccccc',
+      creatorColor: '#999999',
       contentColor: '#666666',
-      creator: 'Anonymous'
+      username: 'Anonymous',
+      contentFont: 'sans-serif'
     }
   },
   render: function () {
@@ -15,11 +16,12 @@ export default React.createClass({
       color: this.props.creatorColor
     };
     let contentStyle = {
-      color: this.props.contentColor
+      color: this.props.contentColor,
+      fontFamily: this.props.contentFont
     }
     return (
-      <p>
-        <span style={creatorStyle} className="from">{this.props.creator}</span>
+      <p className="messageWrap">
+        <span style={creatorStyle} className="from">{this.props.username}</span>
         <span style={contentStyle} className="message">{this.props.content}</span>
       </p>
     )

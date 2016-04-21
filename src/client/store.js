@@ -5,11 +5,13 @@ import thunk from 'redux-thunk';
 var createStoreWithMiddleware = applyMiddleware(thunk)(createStore)
 
 // App Reducers
-import messageReducer from './reducers/message';
+import MessageReducer from 'reducers/message';
+import UserReducer from 'reducers/user';
 
 // Combine Reducers
 var reducers = combineReducers({
-  messageReducer: messageReducer
+  messageReducer: MessageReducer,
+  userReducer: UserReducer
   // more...
 });
 

@@ -1,20 +1,28 @@
 import React from 'react';
-import Room from 'ui/room';
-import DOM from 'react-dom';
 import store from 'store';
+
+import RoomContainer from 'ui/room-container';
+import Login from 'ui/login';
 
 export default React.createClass({
   getInitialState: function () {
     return {
-      messages: []
+      isLoggedIn: false
     }
   },
   componentWillMount: function () {
     this.unsubscribe = store.subscribe(function(){
       let currentStore = store.getState();
-      this.setState({
-        messages: currentStore.messageReducer.messages
-      })
+
+      if (currentStore.userReducer.username) {
+        this.setState({
+          isLoggedIn: true
+        })
+      } else {
+        this.setState({
+          isLoggedIn: false
+        })
+      }
     }.bind(this));
   },
   componentWillUnmount: function () {
@@ -22,7 +30,7 @@ export default React.createClass({
   },
   render: function () {
     return (
-      <Room name="default" messages={this.state.messages} />
+      this.state.isLoggedIn ? <RoomContainer /> : <Login />
     )
   }
-})
+});

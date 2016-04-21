@@ -1,48 +1,33 @@
 import React from 'react';
-import io from 'socket.io-client';
-import store from 'store';
-import { addMessage } from 'actions/actions';
+import { addMessage, chooseColor, chooseFont } from 'actions/actions';
 import Message from 'ui/message';
-
-const socket = io();
 
 require('assets/styles/chatroom.scss');
 
 export default React.createClass({
   getInitialState: function () {
     return {
-      messages: [],
       val: ''
     }
-  },
-  _handleChange: function (e) {
-    this.setState({
-      val: e.target.value
-    });
   },
   _handleSubmit: function (e) {
     e.preventDefault();
 
     if (this.state.val !== '') {
       addMessage({content: this.state.val});
-      this.setState({
-        val: ''
-      });
+      this.setState({val:''});
     }
 
     this.refs.messageInput.focus();
   },
-  componentWillMount: function () {
-    this.unsubscribe = store.subscribe(function(){
-      let currentStore = store.getState();
-      this.setState({
-        val: '',
-        messages: currentStore.messageReducer.messages
-      })
-    }.bind(this));
+  _chooseColor: function (e) {
+    chooseColor(e.target.value);
   },
-  componentWillUnmount: function () {
-    this.unsubscribe();
+  _chooseFont: function (e) {
+    chooseFont(e.target.value);
+  },
+  _handleChange: function (e) {
+    this.setState({val: e.target.value});
   },
   componentWillUpdate: function () {
     var node = this.refs.messages;
@@ -58,11 +43,20 @@ export default React.createClass({
     return (
       <div id="chatroom">
         <div ref="messages" id="messages">
-          {this.state.messages.map((message,i) => <Message key={i} {...message} />)}
+          {this.props.messages.map((message,i) => <Message key={i} {...message} />)}
         </div>
         <div id="messageForm">
+          <div id="messagePrefs">
+            <label htmlFor="contentColorPref">Choose a color</label>
+            <input onChange={this._chooseColor} type="color" id="contentColorPref" />
+            <label htmlFor="contentFontPref">Choose a font</label>
+            <select onChange={this._chooseFont} id="contentFontPref">
+              <option value="sans-serif">Default</option>
+              <option style={{fontFamily:'monospace'}} value="monospace">Monospace</option>
+            </select>
+          </div>
           <form onSubmit={this._handleSubmit}>
-            <input ref="messageInput" type="text" onChange={this._handleChange} value={this.state.val} />
+            <input onChange={this._handleChange} ref="messageInput" value={this.state.val} id="messageInput" type="text" />
             <button type="submit">Submit</button>
           </form>
         </div>

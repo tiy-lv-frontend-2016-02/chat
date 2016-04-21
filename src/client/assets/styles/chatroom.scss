@@ -1,39 +1,24 @@
-#messageForm {
-  position:absolute;
-  bottom:0px;
-  left:0;
-  right:0;
-  height:50px;
-  background:#eee;
-}
-#messageForm input {
-  position:absolute;
-  top:0;
-  left:0;
-  bottom:0;
-  width:100%;
-  padding-right:70px;
-}
-#messageForm button {
-  position:absolute;
-  top:0;
-  bottom:0;
-  right:0px;
-  width:70px;
-}
 #chatroom {
-  position:absolute;
-  top:40px;
-  bottom:0;
-  left:0;
-  right:0;
+  display:flex;
+  flex-direction:column;
+  height:100%;
+  justify-content:space-between;
 }
 #messages {
-  position:absolute;
-  top:0;
-  bottom:40px;
-  left:0;
-  right:0;
   overflow:auto;
-  margin-bottom:20px;
+}
+#messageForm {
+  height:50px;
+  background:#eee;
+  align-self:flex-end;
+  width:100%;
+  display:flex;
+}
+#messageForm input {
+  height:50px;
+  line-height:50px;
+}
+#messageForm button {
+  height:50px;
+
 }

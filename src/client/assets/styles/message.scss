@@ -1,3 +1,7 @@
+.messageWrap {
+  display:flex;
+}
+
 .from {
   float:left;
   display:block;
@@ -9,8 +13,6 @@
   content:":";
 }
 .message {
-  position:absolute;
-  left:115px;
   right:0;
   margin-bottom:10px;
 }
