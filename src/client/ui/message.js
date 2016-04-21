@@ -22,7 +22,7 @@ export default React.createClass({
     return (
       <p className="messageWrap">
         <span style={creatorStyle} className="from">{this.props.username}</span>
-        <span style={contentStyle} className="message">{this.props.content}</span>
+        <span style={contentStyle} className="message">({this.props.timestamp}) {this.props.content}</span>
       </p>
     )
   }

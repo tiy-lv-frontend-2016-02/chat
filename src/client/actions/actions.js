@@ -19,6 +19,7 @@ export function addMessage(message) {
   let messageObj = Object.assign({}, message);
 
   messageObj.username = currentStore.userReducer.username;
+  messageObj.timestamp = new Date().toString();
   messageObj.contentColor = currentStore.userReducer.color;
   messageObj.contentFont = currentStore.userReducer.font;
 
