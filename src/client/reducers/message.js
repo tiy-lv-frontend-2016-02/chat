@@ -32,14 +32,16 @@ const messagesInitialState = {
 export default function (state = messagesInitialState, action) {
   switch (action.type) {
     case 'ADD_MESSAGE':
-
-      let newState = Object.assign({}, state);
-
-      newState.messages.push(action.message);
-      console.log(action.message);
-      return newState;
-
+      return {messages: [...state.messages, action.message]}
     default:
       return state;
   }
 }
+
+
+
+
+
+
+
+

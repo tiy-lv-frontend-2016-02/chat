@@ -1,28 +1,20 @@
 const userInitialState = {
-  username: ''
+  username: '',
+  color: '#666666',
+  font: 'sans-serif'
 }
 
 export default function (state = userInitialState, action) {
-  let newState = {};
   switch (action.type) {
     case 'ADD_USERNAME':
-      newState = Object.assign({}, state);
-
-      newState.username = action.username;
-
-      return newState;
+      return {...state, username:action.username};
 
     case 'CHANGE_COLOR':
-      newState = Object.assign({}, state);
-      newState.color = action.color;
-
-      return newState;
+      return {...state, color:action.color};
 
     case 'CHANGE_FONT':
-      newState = Object.assign({}, state);
-      newState.font = action.font;
+      return {...state, font:action.font};
 
-      return newState;
     default:
       return state;
   }

@@ -1,7 +1,7 @@
 import React from 'react';
 import store from 'store';
 
-import RoomContainer from 'ui/room-container';
+import RoomContainer from 'ui/room/room-container';
 import Login from 'ui/login';
 
 export default React.createClass({

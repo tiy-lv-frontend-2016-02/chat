@@ -1,5 +1,5 @@
 import React from 'react';
-import Room from 'ui/room';
+import Room from 'ui/room/room';
 import DOM from 'react-dom';
 import store from 'store';
 
