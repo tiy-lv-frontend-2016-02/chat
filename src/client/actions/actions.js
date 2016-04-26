@@ -6,12 +6,31 @@ const socket = io();
 chooseColor(window.localStorage.getItem('color'));
 chooseFont(window.localStorage.getItem('font'));
 
+socket.on('private message', function(message){
+  console.log(message);
+});
+
 socket.on('add:message', function(message){
   store.dispatch({
     type: 'ADD_MESSAGE',
     message: message
   });
-})
+});
+
+socket.on('users:update', function (userList) {
+  store.dispatch({
+    type: 'UPDATE_USER_LIST',
+    userList: userList
+  })
+});
+
+export function privateMessage(to, message, username) {
+  let messageObj = {};
+  messageObj.receiver = to;
+  messageObj.message = message;
+  messageObj.from = username;
+  socket.emit('private message', messageObj);
+}
 
 export function addMessage(message) {
   let currentStore = store.getState();
@@ -36,6 +55,7 @@ export function login(username) {
       type: 'ADD_USERNAME',
       username: username
     });
+    socket.emit('user:join', username);
   }
 }
 

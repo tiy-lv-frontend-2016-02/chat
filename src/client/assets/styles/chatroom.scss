@@ -1,8 +1,23 @@
 #chatroom {
   display:flex;
+  height:100%;
+  width:100%;
+}
+
+#userListContainer {
+  width:200px;
+  height:100%;
+  background:#eee;
+  border-left:1px solid #ccc;
+  align-self:flex-end;
+}
+
+#messagesContainer {
+  display:flex;
   flex-direction:column;
   height:100%;
   justify-content:space-between;
+  flex-grow:1;
 }
 #messages {
   overflow:auto;
@@ -20,5 +35,4 @@
 }
 #messageForm button {
   height:50px;
-
 }

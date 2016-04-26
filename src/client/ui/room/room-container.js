@@ -1,28 +1,21 @@
 import React from 'react';
 import Room from 'ui/room/room';
 import DOM from 'react-dom';
-import store from 'store';
+import { connect } from 'react-redux';
 
-export default React.createClass({
-  getInitialState: function () {
-    return {
-      messages: []
-    }
-  },
-  componentWillMount: function () {
-    this.unsubscribe = store.subscribe(function(){
-      let currentStore = store.getState();
-      this.setState({
-        messages: currentStore.messageReducer.messages
-      })
-    }.bind(this));
-  },
-  componentWillUnmount: function () {
-    this.unsubscribe();
-  },
+const RoomContainer = React.createClass({
   render: function () {
     return (
-      <Room name="default" messages={this.state.messages} />
+      <Room {...this.props} />
     )
   }
 })
+
+const stateToProps = function (state) {
+  return {
+    messages: state.messageReducer.messages,
+    users: state.userReducer.users,
+  }
+}
+
+export default connect(stateToProps)(RoomContainer)

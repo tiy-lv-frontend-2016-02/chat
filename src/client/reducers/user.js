@@ -1,7 +1,8 @@
 const userInitialState = {
   username: '',
   color: '#666666',
-  font: 'sans-serif'
+  font: 'sans-serif',
+  users: []
 }
 
 export default function (state = userInitialState, action) {
@@ -14,6 +15,9 @@ export default function (state = userInitialState, action) {
 
     case 'CHANGE_FONT':
       return {...state, font:action.font};
+
+    case 'UPDATE_USER_LIST':
+      return {...state, users: action.userList};
 
     default:
       return state;
